@@ -18,8 +18,8 @@ const displayPhones = (data) =>{
             <img class="mx-auto" src="${image}" alt="">
             <div class="mt-5">
                 <h5 class="text-2xl font-semibold">${phone_name}</h5>
-                <p class="text-base">Phone more information you click ta details button</p>
-                    <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" onclick="showPhoneDetails('${phone.slug}')" class="bg-sky-600 hover:bg-blue-800 hover:text-white rounded-lg py-2 text-xl font-medium px-5 mt-3">Details</button>
+                <p class="text-base">Phone more information you click ta details button</p>                  
+                    <label for="my-modal-3" onclick="showPhoneDetails('${phone.slug}')" class="btn bg-sky-600 hover:bg-blue-800 hover:text-white rounded-lg py-2 text-xl font-medium px-5 mt-3">Details</label>
             </div>
         </div>
         `
@@ -45,10 +45,22 @@ const showPhoneDetails = (id) =>{
 
 const displayModalShow = (phone) =>{
     console.log(phone);
-    const {name} = phone;
-    const title = document.getElementById('modal-title')
-    title.innerText=name
+    const {name, releaseDate, image} = phone;
+    const {chipSet, displaySize, memory, storage} =phone.mainFeatures
+    const body = document.getElementById('modal-body')
+    body.innerHTML=`
+    <img src=${image}
+    <h2 class="text-2xl font-semibold mb-5">Phone Name: ${name}</h2>
+    <hr>
+    <h5>Release Date: ${releaseDate}</h5>
+    <h5>Storage: ${storage}</h5>
+    <h5>Memory: ${memory}</h5>
+    <h5>ChipSet: ${chipSet}</h5>
+    <h5>Display Size: ${displaySize}</h5>
     
+    
+
+    `
 }
 
 loadPhones('apple')
